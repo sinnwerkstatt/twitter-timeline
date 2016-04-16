@@ -44,10 +44,10 @@ $(function() {
 			update.text = linkify (status.text);
 
 			if (status.quoted_status) {
-				update.quotedstatus = {};
-				update.quotedstatus.text = linkify (status.quoted_status.text);
-				if (status.quoted_status.media) {
-					update.quotedstatus.media = status.quoted_status.media[0].media_url_https;
+				update.quoted_status = {};
+				update.quoted_status.text = linkify (status.quoted_status.text);
+				if (status.quoted_status.extended_entities.media) {
+					update.quoted_status.media_url_https = status.quoted_status.extended_entities.media[0].media_url_https;
 				}
 			}
 
