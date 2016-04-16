@@ -20,6 +20,8 @@ h1 {
 
 .twitter-timeline {
 	font-family: "OpenSansEmoji", serif;
+	font-size: 14px;
+	line-height: 1.3em;
 }
 .twitter-timeline a {
 	text-decoration: none;
@@ -44,11 +46,12 @@ h1 {
 
 .twitter-timeline .twitter-timeline-meta {
 	margin-left: 63px;
-	margin-bottom: 3px;
+	margin-bottom: 5px;
+	color: #777;
 }
 
 .twitter-timeline .twitter-timeline-username {
-
+	color: black;
 }
 
 
@@ -64,8 +67,9 @@ h1 {
 
 .twitter-timeline .twitter-timeline-text {
 	margin-left: 63px;
-	font-size: 120%;
+	font-size: 110%;
 	margin-bottom: 10px;
+	word-wrap: break-word;
 }
 
 
@@ -74,10 +78,11 @@ h1 {
 }
 
 .twitter-timeline .twitter-timeline-imagecontainer {
+	max-width: 400px;
+	margin: 0 auto;
 }
 .twitter-timeline .twitter-timeline-imagecontainer img {
 	display: block;
-	margin: 0 auto;
 	max-width: 100%;
 	max-height: 400px;
 }
@@ -87,11 +92,5 @@ h1 {
 	margin-left: 63px;
 	border: 1px solid #777;
 	padding: 15px;
+	word-wrap: break-word;
 }
-.twitter-timeline .twitter-timeline-quote img {
-	display: block;
-	max-width: 400px;
-	max-height: 400px;
-	margin: 0 auto;
-}
-
