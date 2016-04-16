@@ -1,0 +1,64 @@
+.twitter-timeline .twitter-timeline-update {
+	border: 1px solid #aaa;
+	padding: 15px;
+	margin-bottom: 15px;
+}
+
+.twitter-timeline .twitter-timeline-useravatar {
+	float: left;
+	width: 48px;
+	height: 48px;
+	display: block;
+}
+
+
+.twitter-timeline .twitter-timeline-meta {
+	margin-left: 63px;
+	margin-bottom: 3px;
+}
+
+.twitter-timeline .twitter-timeline-username {
+
+}
+
+
+.twitter-timeline .twitter-timeline-screenname {
+	color: inherit;
+	font-size: 90%;
+}
+
+.twitter-timeline .twitter-timeline-time {
+	color: inherit;
+	font-size: 90%;
+}
+
+.twitter-timeline .twitter-timeline-text {
+	margin-left: 63px;
+	font-size: 120%;
+	margin-bottom: 10px;
+}
+
+
+.twitter-timeline .twitter-timeline-media {
+	margin-left: 63px;
+}
+.twitter-timeline .twitter-timeline-media img {
+	display: block;
+	max-width: 400px;
+	max-height: 400px;
+	margin: 0 auto;
+}
+
+
+.twitter-timeline .twitter-timeline-quote {
+	margin-left: 63px;
+	border: 1px solid #777;
+	padding: 15px;
+}
+.twitter-timeline .twitter-timeline-quote img {
+	display: block;
+	max-width: 400px;
+	max-height: 400px;
+	margin: 0 auto;
+}
+
