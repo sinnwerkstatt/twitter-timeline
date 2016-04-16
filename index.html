@@ -19,11 +19,11 @@
 		<div class="twitter-timeline-update">
 			{{#if retweeted_status}}
 				<a href="https://twitter.com/{{retweeted_status.user.screen_name}}" target="_blank" class="twitter-timeline-useravatar">
-					<img src="{{retweeted_status.user.profile_image_url}}"/>
+					<img src="{{retweeted_status.user.profile_image_url_https}}"/>
 				</a>
 			{{else}}
 				<a href="https://twitter.com/{{user.screen_name}}" target="_blank" class="twitter-timeline-useravatar">
-					<img src="{{user.profile_image_url}}"/>
+					<img src="{{user.profile_image_url_https}}"/>
 				</a>
 			{{/if}}
 
@@ -64,7 +64,9 @@
 			{{#if extended_entities.media}}
 				<div class="twitter-timeline-media">
 				{{#if extended_entities.media.0.media_url_https}}
-					<img src="{{extended_entities.media.0.media_url_https}}">
+					<div class="twitter-timeline-imagecontainer">
+						<img src="{{extended_entities.media.0.media_url_https}}">
+					</div>
 				{{/if}}
 				</div>
 			{{/if}}
@@ -73,7 +75,9 @@
 					{{{linkify quoted_status.text}}}
 					{{#each quoted_status.extended_entities.media.0.media_url_https}}
 						<div class="twitter-timeline-quote-media">
-							<img src="{{quoted_status.extended_entities.media.0.media_url_https}}">
+							<div class="twitter-timeline-imagecontainer">
+								<img src="{{quoted_status.extended_entities.media.0.media_url_https}}">
+							</div>
 						</div>
 					{{/each}}
 				</div>
@@ -83,7 +87,9 @@
 					{{{linkify retweeted_status.quoted_status.text}}}
 					{{#if retweeted_status.quoted_status.extended_entities.media.0.media_url_https}}
 						<div class="twitter-timeline-quote-media">
-							<img src="{{retweeted_status.quoted_status.extended_entities.media.0.media_url_https}}">
+							<div class="twitter-timeline-imagecontainer">
+								<img src="{{retweeted_status.quoted_status.extended_entities.media.0.media_url_https}}">
+							</div>
 						</div>
 					{{/if}}
 				</div>

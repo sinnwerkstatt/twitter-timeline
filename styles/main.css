@@ -42,11 +42,14 @@
 .twitter-timeline .twitter-timeline-media {
 	margin-left: 63px;
 }
-.twitter-timeline .twitter-timeline-media img {
+
+.twitter-timeline .twitter-timeline-imagecontainer {
+}
+.twitter-timeline .twitter-timeline-imagecontainer img {
 	display: block;
-	max-width: 400px;
-	max-height: 400px;
 	margin: 0 auto;
+	max-width: 100%;
+	max-height: 400px;
 }
 
 
