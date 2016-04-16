@@ -1,23 +1,11 @@
 $(function() {
 
-	// Ugly Firefox workaround
-	$.ajaxSetup({beforeSend: function(xhr){
-		if (xhr.overrideMimeType)
-		{
-			xhr.overrideMimeType("application/json");
-		}
-	}
-	});
-
-
-
-
-	Handlebars.registerHelper('formatDate', function(date) {
+	function formatdate(date) {
 		return date.substr(0, 19);
-	});
+	};
 
 
-	Handlebars.registerHelper('linkify', function(tweet) {
+	function linkify(tweet) {
 		var out = tweet;
 		out = out.replace(/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&~\?\/.=]+/g, function(url) {
 				return '<a href="'+ url +'">'+ url +'</a>';
@@ -33,13 +21,48 @@ $(function() {
 		out = out.replace(/(?:\r\n|\r|\n)/g, '<br />');
 
 		return out;
-	});
+	};
 
 	// Fetch twitter timeline demo data
 	$.getJSON( "scripts/timeline.json", function( data ) {
+		var updates = []; // Twitter updates
+		$.each(data, function(index, rawUpdate) {
+			var update = {};
+
+			// If this is a retweet, use original message
+			if (rawUpdate.retweeted_status) {
+				var status = rawUpdate.retweeted_status;
+			} else {
+				var status = rawUpdate;
+			}
+
+			update.id_str = status.user.id_str;
+			update.screen_name = status.user.screen_name;
+			update.name = status.user.name;
+			update.profile_image_url_https = status.user.profile_image_url_https;
+			update.created_at = formatdate(status.created_at);
+			update.text = linkify (status.text);
+
+			if (status.quoted_status) {
+				update.quotedstatus = {};
+				update.quotedstatus.text = linkify (status.quoted_status.text);
+				if (status.quoted_status.media) {
+					update.quotedstatus.media = status.quoted_status.media[0].media_url_https;
+				}
+			}
+
+			if (status.extended_entities && status.extended_entities.media) {
+				update.extended_entities = {};
+				update.extended_entities.media_url_https = status.extended_entities.media[0].media_url_https;
+			}
+
+
+			updates.push(update);
+		});
+
 		var source   = $("#timeline-template").html();
 		var template = Handlebars.compile(source);
-		var context = data;
+		var context = updates;
 		var html    = template(context);
 		$('#timeline').html(html);
 	});

@@ -5,10 +5,8 @@
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel='stylesheet' href='styles/bootstrap.min.css' type='text/css' />
 	<link rel='stylesheet' href='styles/main.css' type='text/css' />
 	<script type='text/javascript' src='scripts/jquery-2.2.3.min.js'></script>
-	<script type='text/javascript' src='scripts/bootstrap.min.js'></script>
 	<script type='text/javascript' src='scripts/handlebars-v4.0.5.js'></script>
 	<script type='text/javascript' src='scripts/main.js'></script>
 </head>
@@ -17,78 +15,40 @@
 	<div class="twitter-timeline">
 	{{#each this}}
 		<div class="twitter-timeline-update">
-			{{#if retweeted_status}}
-				<a href="https://twitter.com/{{retweeted_status.user.screen_name}}" target="_blank" class="twitter-timeline-useravatar">
-					<img src="{{retweeted_status.user.profile_image_url_https}}"/>
-				</a>
-			{{else}}
-				<a href="https://twitter.com/{{user.screen_name}}" target="_blank" class="twitter-timeline-useravatar">
-					<img src="{{user.profile_image_url_https}}"/>
-				</a>
-			{{/if}}
+			<a href="https://twitter.com/{{screen_name}}" target="_blank" class="twitter-timeline-useravatar">
+				<img src="{{profile_image_url_https}}"/>
+			</a>
 
 			<div class="twitter-timeline-meta">
-				{{#if retweeted_status}}
-					<a href="https://twitter.com/{{retweeted_status.user.screen_name}}" target="_blank" class="twitter-timeline-username">
-						{{retweeted_status.user.name}}
-					</a>
-					·
-					<a href="https://twitter.com/{{retweeted_status.user.screen_name}}" target="_blank" class="twitter-timeline-screenname">
-						@{{retweeted_status.user.screen_name}}
-					</a>
-					·
-					<a target="_blank" href="https://twitter.com/{{retweeted_status.user.screen_name}}/status/{{retweeted_status.id_str}}" class="twitter-timeline-time">
-						{{formatDate retweeted_status.created_at}}
-					</a>
-				{{else}}
-					<a href="https://twitter.com/{{user.screen_name}}" target="_blank" class="twitter-timeline-username">
-						{{user.name}}
-					</a>
-					·
-					<a href="https://twitter.com/{{user.screen_name}}" target="_blank" class="twitter-timeline-screenname">
-						@{{user.screen_name}}
-					</a>
-					·
-					<a target="_blank" href="https://twitter.com/{{user.screen_name}}/status/{{id_str}}" class="twitter-timeline-time">
-						{{formatDate created_at}}
-					</a>
-				{{/if}}
+				<a href="https://twitter.com/{{screen_name}}" target="_blank" class="twitter-timeline-username">
+					{{name}}
+				</a>
+				·
+				<a href="https://twitter.com/{{screen_name}}" target="_blank" class="twitter-timeline-screenname">
+					@{{screen_name}}
+				</a>
+				·
+				<a target="_blank" href="https://twitter.com/{{screen_name}}/status/{{id_str}}" class="twitter-timeline-time">
+					{{created_at}}
+				</a>
 			</div>
 			<div class="twitter-timeline-text">
-				{{#if retweeted_status}}
-					{{{linkify retweeted_status.text}}}
-				{{else}}
-					{{{linkify text}}}
-				{{/if}}
+				{{{text}}}
 			</div>
-			{{#if extended_entities.media}}
+			{{#if extended_entities}}
 				<div class="twitter-timeline-media">
-				{{#if extended_entities.media.0.media_url_https}}
 					<div class="twitter-timeline-imagecontainer">
-						<img src="{{extended_entities.media.0.media_url_https}}">
+						<img src="{{extended_entities.media_url_https}}">
 					</div>
-				{{/if}}
 				</div>
 			{{/if}}
 			{{#if quoted_status}}
 				<div class="twitter-timeline-quote">
-					{{{linkify quoted_status.text}}}
-					{{#each quoted_status.extended_entities.media.0.media_url_https}}
+					{{{quoted_status.text}}}
+					{{#if quoted_status.media_url_https}}
 						<div class="twitter-timeline-quote-media">
 							<div class="twitter-timeline-imagecontainer">
-								<img src="{{quoted_status.extended_entities.media.0.media_url_https}}">
-							</div>
-						</div>
-					{{/each}}
-				</div>
-			{{/if}}
-			{{#if retweeted_status.quoted_status}}
-				<div class="twitter-timeline-quote">
-					{{{linkify retweeted_status.quoted_status.text}}}
-					{{#if retweeted_status.quoted_status.extended_entities.media.0.media_url_https}}
-						<div class="twitter-timeline-quote-media">
-							<div class="twitter-timeline-imagecontainer">
-								<img src="{{retweeted_status.quoted_status.extended_entities.media.0.media_url_https}}">
+								<img src="{{quoted_status.media_url_https}}">
 							</div>
 						</div>
 					{{/if}}
